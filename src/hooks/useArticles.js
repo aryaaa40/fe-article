@@ -31,7 +31,16 @@ export const useArticles = () => {
 
   const thrashArticle = async (id) => {
     try {
-      await articleService.delete(id);
+      const articleToThrash = articles.find(a => a.id === id);
+      if (!articleToThrash) return false;
+
+      await articleService.update(id, {
+        title: articleToThrash.title,
+        content: articleToThrash.content,
+        category: articleToThrash.category,
+        status: ARTICLE_STATUS.THRASH
+      });
+      
       await fetchArticles();
       return true;
     } catch (err) {
