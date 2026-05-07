@@ -14,9 +14,8 @@ function App() {
           <Route path="/posts" element={<AllPosts />} />
           <Route path="/posts/add" element={<AddNew />} />
           <Route path="/posts/edit/:id" element={<EditPost />} />
+          <Route path="/preview" element={<Preview />} />
         </Route>
-        
-        <Route path="/preview" element={<Preview />} />
         
         <Route path="/" element={<Navigate to="/posts" replace />} />
       </Routes>

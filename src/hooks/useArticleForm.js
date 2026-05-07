@@ -6,13 +6,13 @@ import { ARTICLE_STATUS } from '../constants/article';
 export const useArticleForm = (isEdit = false) => {
   const navigate = useNavigate();
   const { id } = useParams();
-  
+
   const [formData, setFormData] = useState({
     title: '',
     content: '',
     category: '',
   });
-  
+
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(false);
   const [errors, setErrors] = useState({});
@@ -60,13 +60,13 @@ export const useArticleForm = (isEdit = false) => {
     try {
       setLoading(true);
       const payload = { ...formData, status };
-      
+
       if (isEdit) {
         await articleService.update(id, payload);
       } else {
         await articleService.create(payload);
       }
-      
+
       navigate('/posts');
     } catch (err) {
       setErrors({ global: err.message });
